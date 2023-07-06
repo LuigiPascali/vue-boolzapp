@@ -1,58 +1,161 @@
-# htmlcss-template
+<!-- Descrizione:
 
-FONTS:
-<!-- Montserrat: Pulito e leggibile:
+Seguendo il brief in allegato, implementare la web application Boolzap con Vue.
 
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+Milestone 1:
+● Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse
+● Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto.
 
-CSS:  font-family: 'Montserrat', sans-serif; 
+Milestone 2:
+● Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i messaggi relativi al contatto attivo all’interno del pannello della conversazione
+● Click sul contatto mostra la conversazione del contatto cliccato
 
-Lato: Pulito e leggibile - Testi brevi o paragrafi:
+Milestone 3:
+● Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
+● Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+Milestone 4:
+● Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 
-CSS: font-family: 'Lato', sans-serif;
+Milestone 5 - opzionale:
+● Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato.
 
-Raleway: Elegante e leggero - Titoli e testi grandi dimensioni: 
+● La struttura dell’array dei contatti potrebbe avere questa forma:
+contacts: [ {
+        name: 'Michele',
+        avatar: './img/avatar_1.png',
+        visible: true,
+        messages: [
+            {
+                date: '10/01/2020 15:30:55',
+                message: 'Hai portato a spasso il cane?',
+                status: 'sent'
+}, {
+},
+      date: '10/01/2020 15:50:00',
+message: 'Ricordati di stendere i panni',
+status: 'sent'
+         {
+            date: '10/01/2020 16:15:22',
+            message: 'Tutto fatto!',
+            status: 'received'
+} ],
+}, {
+name: 'Fabio',
+avatar: './img/avatar_2.png',
+visible: true,
+messages: [
+    {
+        date: '20/03/2020 16:30:00',
+        message: 'Ciao come stai?',
+        status: 'sent'
+}, {
+}, {
+} ],
+}, {
+date: '20/03/2020 16:30:55',
+message: 'Bene grazie! Stasera ci vediamo?',
+status: 'received'
+date: '20/03/2020 16:35:00',
+message: 'Mi piacerebbe ma devo andare a fare la spesa.',
+status: 'sent'
+name: 'Samuele',
+avatar: './img/avatar_3.png',
+visible: true,
+messages: [
+    {
+        date: '28/03/2020 10:10:40',
+        message: 'La Marianna va in campagna',
+        status: 'received'
+}, {
+}, {
+} ],
+}, {
+date: '28/03/2020 10:20:10',
+message: 'Sicuro di non aver sbagliato chat?',
+status: 'sent'
+date: '28/03/2020 16:15:22',
+message: 'Ah scusa!',
+status: 'received'
+name: 'Alessandro B.',
+avatar: './img/avatar_4.png',
 
-HTML:  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+     visible: true,
+    messages: [
+        {
+            date: '10/01/2020 15:30:55',
+            message: 'Lo sai che ha aperto una nuova pizzeria?',
+            status: 'sent'
+}, {
+} ],
+}, {
+} ],
+}, {
+date: '10/01/2020 15:50:00',
+message: 'Si, ma preferirei andare al cinema',
+status: 'received'
+name: 'Alessandro L.',
+avatar: './img/avatar_5.png',
+visible: true,
+messages: [
+    {
+        date: '10/01/2020 15:30:55',
+        message: 'Ricordati di chiamare la nonna',
+        status: 'sent'
+}, {
+date: '10/01/2020 15:50:00',
+message: 'Va bene, stasera la sento',
+status: 'received'
+name: 'Claudia',
+avatar: './img/avatar_5.png',
+visible: true,
+messages: [
+    {
+        date: '10/01/2020 15:30:55',
+        message: 'Ciao Claudia, hai novità?',
+        status: 'sent'
+}, {
+}, {
+} ],
+}, {
+date: '10/01/2020 15:50:00',
+message: 'Non ancora',
+status: 'received'
+date: '10/01/2020 15:51:00',
+message: 'Nessuna nuova, buona nuova',
+status: 'sent'
 
-CSS: font-family: 'Raleway', sans-serif;
+name: 'Federico',
+    avatar: './img/avatar_7.png',
+    visible: true,
+    messages: [
+        {
+            date: '10/01/2020 15:30:55',
+            message: 'Fai gli auguri a Martina che è il suo compleanno!',
+            status: 'sent'
+}, {
+} ],
+}, {
+} ],
+} ]
+date: '10/01/2020 15:50:00',
+message: 'Grazie per avermelo ricordato, le scrivo subito!',
+status: 'received'
+name: 'Davide',
+avatar: './img/avatar_8.png',
+visible: true,
+messages: [
+    {
+        date: '10/01/2020 15:30:55',
+        message: 'Ciao, andiamo a mangiare la pizza stasera?',
+        status: 'received'
+}, {
+}, {
+date: '10/01/2020 15:50:00',
+message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
+status: 'sent'
+date: '10/01/2020 15:51:00',
+message: 'OK!!',
+status: 'received'
 
-Open Sans: 
-
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-
-CSS: font-family: 'Open Sans', sans-serif;
-
-Roboto: 
-
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-CSS: font-family: 'Roboto', sans-serif;
-
-Poppins: Linee Arrotondate - Testi e piccoli paragrafi:
-
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-CSS: font-family: 'Poppins', sans-serif;
-
-Playfair Display: Tocco di classe:
-
-HTML: <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-CSS: font-family: 'Playfair Display', serif;  -->
+Buon lavoro e buon divertimento! -->

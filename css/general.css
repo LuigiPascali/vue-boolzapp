@@ -9,8 +9,9 @@
 :root {
     /* Color Palette */
     
-    --light_color:#FFFFFF ;
-    --dark_color: #0A0A0A ;
+    --light_color:#FFFFFF;
+    --dark_color: #0A0A0A;
+    --message_color: #558B6E;
 
 }
 
