@@ -5,6 +5,7 @@ const app = Vue.createApp({
 
         // MILESTONE 2:
         currentlyActiveIndex: 0,
+     
 
         // MILESTONE 1:
         contacts: [
@@ -169,24 +170,47 @@ const app = Vue.createApp({
                   }
               ],
           }
-        ]
+        ],
+        newMessage: '',
       };
     },
     
     // MILESTONE 2:
     methods: {
         changeChat(currentlyActiveIndex) {
+          this.contacts[this.currentlyActiveIndex].isActive = false;
+          this.currentlyActiveIndex = currentlyActiveIndex;
+          this.contacts[this.currentlyActiveIndex].isActive = true;
+        },
 
-            this.contacts[this.currentlyActiveIndex].isActive = false;
+        // MILESTONE 3:
+        sendMessage() {
+          if (this.newMessage.trim() === '') {
+            return;
+          }
+          
+          const currentDate = new Date();
+          const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
 
-            this.currentlyActiveIndex = currentlyActiveIndex;
-
-            this.contacts[this.currentlyActiveIndex].isActive = true;
-
-        }
-    }
+          this.contacts[this.currentlyActiveIndex].messages.push({
+            date: formattedDate,
+            message: this.newMessage,
+            status: 'sent'
+          });
     
-});
-
+          // Simulazione di una risposta dopo 1 secondo
+          setTimeout(() => {
+            this.contacts[this.currentlyActiveIndex].messages.push({
+              date: formattedDate,
+              message: 'Ok',
+              status: 'received'
+            });
+            
+          }, 1000);
+    
+          this.newMessage = '';
+        }
+      }
+    });
 // Mostra l'applicazione nella pagina HTML
 app.mount('#app');
