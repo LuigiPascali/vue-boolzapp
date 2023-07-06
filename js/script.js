@@ -3,9 +3,10 @@ const app = Vue.createApp({
     data() {
       return {
 
-        // MILESTONE 1:
+        // MILESTONE 2:
+        currentlyActiveIndex: 0,
 
-        indexContacts: 0,
+        // MILESTONE 1:
         contacts: [
           {
               name: 'Michele',
@@ -168,9 +169,23 @@ const app = Vue.createApp({
                   }
               ],
           }
-      ]
+        ]
       };
+    },
+    
+    // MILESTONE 2:
+    methods: {
+        changeChat(currentlyActiveIndex) {
+
+            this.contacts[this.currentlyActiveIndex].isActive = false;
+
+            this.currentlyActiveIndex = currentlyActiveIndex;
+
+            this.contacts[this.currentlyActiveIndex].isActive = true;
+
+        }
     }
+    
 });
 
 // Mostra l'applicazione nella pagina HTML
