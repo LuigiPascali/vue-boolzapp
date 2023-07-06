@@ -11,7 +11,17 @@
     
     --light_color:#FFFFFF;
     --dark_color: #0A0A0A;
+    --top_color: #009688;
+    --primary_color: #FAFAFA;
+    --secondary_color: #EAEAEA;
+    --tertiary_color: #8EDAFC;
     --message_color: #558B6E;
+    --details_color: #B1B1B1;
+    --icons_footer: #6B7376;
 
 }
+
+body{background-color: rgb(217,219,212,1);}
+
+
 
