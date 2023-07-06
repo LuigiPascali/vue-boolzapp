@@ -108,7 +108,9 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </span>
 
-                                <input type="text" class="form-control rounded-0 border border-white" placeholder="Cerca o inizia una nuova chat">
+                                <!-- MILESTONE 4: -->
+
+                                <input type="text" class="form-control rounded-0 border border-white" placeholder="Cerca o inizia una nuova chat" v-model="searchQuery">
 
                             </div>
 
@@ -117,8 +119,8 @@
                     </div>
     
                     <div class="aside-down flex-grow-2">
-                        
-                        <div class="contact_container" v-for="(singleContact, i) in contacts" @click="changeChat(i)" :class="{ 'contact-item-active' : singleContact.isActive }">
+                       
+                        <div class="contact_container" v-for="(singleContact, i) in filteredContacts" @click="changeChat(i)" :class="{ 'contact-item-active' : singleContact.isActive }">
 
                             <div class="avatar-img">
                                 <img :src="singleContact.avatar" alt="">
@@ -186,8 +188,10 @@
                         <div class="icons">
 
                             <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" class="form-control rounded-0 border border-white">
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i class="fa-solid fa-x"></i>
 
                         </div>
 
@@ -224,7 +228,7 @@
                             <div class="w-100">
                                 <div class="input-group input-group-sm mt-2 px-2">
     
-                                    <input type="text" class="form-control rounded-0 border border-white" placeholder="Cerca o inizia una nuova chat" v-model="newMessage" @keyup.enter="sendMessage">
+                                    <input type="text" class="form-control rounded-0 border border-white" placeholder="Scrivi un nuovo messaggio" v-model="newMessage" @keyup.enter="sendMessage">
                                 </div>
                             </div>
 
