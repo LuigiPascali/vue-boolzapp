@@ -10,7 +10,9 @@ main {width: calc(1100px - 400px);}
 .header_right,
 footer {height: 50px;background-color: var(--secondary_color);}
 
-aside {width: 400px;background-color: var(--light_color);display: flex;flex-direction: column;}
+aside {width: 400px;height: 580px;min-height: 250px;background-color: var(--light_color);display: flex;flex-direction: column;}
+
+.aside_bottom {height: calc(580px - 150px);overflow-y: scroll;}
 
 
 /* 
@@ -32,7 +34,7 @@ aside {width: 400px;background-color: var(--light_color);display: flex;flex-dire
     CONTAINERS: 
 */
 
-.my_container {margin: 0 auto;max-width: 1100px;height: 580px;position: absolute;display: flex;background-color: lightblue;top: 20px;left: 10px;bottom: 20px;right: 10px;z-index: 1000;}
+.my_container {margin: 0 auto;max-width: 1100px;height: 580px;position: absolute;display: flex;top: 20px;left: 10px;bottom: 20px;right: 10px;z-index: 1000;}
 
 .notify_container {height: 50px;background-color: var(--tertiary_color);}
 
@@ -40,7 +42,7 @@ aside {width: 400px;background-color: var(--light_color);display: flex;flex-dire
 
 .contact_container {height: 50px;width: 100%;background-color: var(--light_color);border-top: 0.5px solid var(--secondary_color);padding: 5px;display: flex;}
 
-.chat_container {height: calc(580px - 100px);background-image: url(../img/mine.jpg);}
+.chat_container {height: calc(580px - 100px);background-image: url(../img/mine.jpg);overflow-y: scroll;}
 
 
 /* 
@@ -63,7 +65,7 @@ aside {width: 400px;background-color: var(--light_color);display: flex;flex-dire
 
 .sent {position:relative; width: 280px;height: 70px;margin-left: 350px;margin-top: 10px;padding: 5px 10px;background-color: var(--message_color);border-radius: 10px; font-size: .8rem;}
 
-.received{position: relative;width: 280px;height: 70px;margin-left: 30px;padding: 5px 10px;background-color: var(--light_color);border-radius: 10px;font-size: .8em;}
+.received {position: relative;width: 280px;height: 70px;margin-left: 30px;padding: 5px 10px;background-color: var(--light_color);border-radius: 10px;font-size: .8em;}
 
 .contact-item-chat {display: flex;}
 

@@ -9,11 +9,8 @@ const app = Vue.createApp({
       // MILESTONE 4:
       searchQuery:'',
 
-      closeSearchBar() {
-        this.searchBarOpen = false;
-      },
-
       // MILESTONE 1:
+
       contacts: [
         {
           name: 'Michele',
@@ -23,17 +20,19 @@ const app = Vue.createApp({
                   {
                   date: '10/01/2020 15:30:55',
                   message: 'Hai portato a spasso il cane?',
-                  status: 'sent'
+                  status: 'sent',
+                  showDropdown: false 
                   },
                   {
                   date: '10/01/2020 15:50:00',
                   message: 'Ricordati di stendere i panni',
-                  status: 'sent'
+                  status: 'sent',
+                  showDropdown: false 
                   },
                   {
                   date: '10/01/2020 16:15:22',
                   message: 'Tutto fatto!',
-                  status: 'received'
+                  status: 'received',                  
                   }
           ],
         },
@@ -117,7 +116,7 @@ const app = Vue.createApp({
         },
         {
           name: 'Claudia',
-          avatar: 'img/avatar_5.jpg',
+          avatar: 'img/avatar_6.jpg',
           visible: true,
           messages: [
             {
@@ -195,11 +194,9 @@ const app = Vue.createApp({
           return;
         }
         
-        const currentDate = new Date();
-        const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
-
+        const currentDate = luxon.DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');
         this.contacts[this.currentlyActiveIndex].messages.push({
-          date: formattedDate,
+          date: currentDate,
           message: this.newMessage,
           status: 'sent'
         });
@@ -207,7 +204,7 @@ const app = Vue.createApp({
         // Simulazione di una risposta dopo 1 secondo
         setTimeout(() => {
           this.contacts[this.currentlyActiveIndex].messages.push({
-            date: formattedDate,
+            date: currentDate,
             message: 'Ok',
             status: 'received'
           });
@@ -215,17 +212,45 @@ const app = Vue.createApp({
         }, 1000);
 
         this.newMessage = '';
-      }
+      },
+
+      // MILESTONE 5: 
+      toggleDropdown(messageData) {
+        messageData.showDropdown = !messageData.showDropdown;
+      },
+
+      deleteMessage(messageData) {
+        const index = this.contacts[this.currentlyActiveIndex].messages.indexOf(messageData);
+
+        if (index > -1) {
+          this.contacts[this.currentlyActiveIndex].messages.splice(index, 1);
+        }
+      },
+
+      getLastMessage(contact) {
+        const lastMessage = contact.messages[contact.messages.lenght - 1];
+
+        return lastMessage ? lastMessage.message : '';
+      },
+
+      getLastMessageTime(contact) {
+        const lastMessage = contact.messages[contact.messages.lenght - 1];
+
+        return lastMessage ? lastMessage.date : '';
+      },
+
     },
     // MILESTONE 4:
     computed: {
       filteredContacts() {
         return this.contacts.filter(contact => {
           return contact.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-        });
-      }
+      });
     }
+  }
 });
 // Mostra l'applicazione nella pagina HTML
 app.mount('#app');
+
+
 
