@@ -61,6 +61,8 @@ aside {width: 400px;height: 580px;min-height: 250px;background-color: var(--ligh
 
 .contact > * {line-height: 5px;}
 
+
+
 .time {font-size: 0.6em;}
 
 .sent {position:relative; width: 280px;height: 70px;margin-left: 350px;margin-top: 10px;padding: 5px 10px;background-color: var(--message_color);border-radius: 10px; font-size: .8rem;}

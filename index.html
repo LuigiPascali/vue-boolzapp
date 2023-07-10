@@ -121,7 +121,7 @@
     
                     <div class="aside_bottom flex-grow-2">
                        
-                        <div class="contact-item" v-for="(singleContact, i) in contacts" @click="changeChat(i)" :class="{'contact-item-active': singleContact.isActive, 'd-none': !singleContact.visible}">
+                        <div class="contact-item" v-for="(singleContact, i) in contacts" @click="changeChat(i)" :class="{ 'd-none': !singleContact.visible}">
 
                             <div class="avatar-img">
                                 <img :src="singleContact.avatar" alt="">
