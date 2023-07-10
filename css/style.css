@@ -71,7 +71,11 @@ aside {width: 400px;height: 580px;min-height: 250px;background-color: var(--ligh
 
 .date {position: absolute;bottom: 0;right: 5px;font-size: .5rem;}
 
+/* 
+    DROPDOWN
+*/
 
+.dr_btn i {position: absolute;top:-20px;right: 0;color: var(--dark_color);font-size: 0.8rem;}
 
 
 

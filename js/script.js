@@ -214,29 +214,30 @@ const app = Vue.createApp({
         this.newMessage = '';
       },
 
-      // MILESTONE 5: 
-      toggleDropdown(messageData) {
-        messageData.showDropdown = !messageData.showDropdown;
+      // MILESTONE 5:
+
+      removeMessage(index){
+        this.contacts[this.currentlyActiveIndex].messages.splice(index,1)
       },
 
-      deleteMessage(messageData) {
-        const index = this.contacts[this.currentlyActiveIndex].messages.indexOf(messageData);
+      getLastMessage(messages) {
+        const lastMessage = messages[messages.length - 1];
 
-        if (index > -1) {
-          this.contacts[this.currentlyActiveIndex].messages.splice(index, 1);
+        if (lastMessage) {
+          return lastMessage.message;
         }
+
+        return '';
       },
+      
+      getLastMessageTime(messages) {
+        const lastMessage = messages[messages.length - 1];
 
-      getLastMessage(contact) {
-        const lastMessage = contact.messages[contact.messages.lenght - 1];
+        if (lastMessage) {
+          return lastMessage.date;
+        }
 
-        return lastMessage ? lastMessage.message : '';
-      },
-
-      getLastMessageTime(contact) {
-        const lastMessage = contact.messages[contact.messages.lenght - 1];
-
-        return lastMessage ? lastMessage.date : '';
+        return '';
       },
 
     },
@@ -246,7 +247,7 @@ const app = Vue.createApp({
         return this.contacts.filter(contact => {
           return contact.name.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
-    }
+    },    
   }
 });
 // Mostra l'applicazione nella pagina HTML

@@ -45,8 +45,6 @@
        
         <!-- MILESTONE 1: -->
 
-        
-
         <div id="app">
 
             <div class="top_area"></div>
@@ -137,8 +135,10 @@
                                         {{singleContact.name}}
                                     </h6>
 
+                                    <!-- MILESTONE 5: -->
+
                                     <p>
-                                        Ultimo messaggio inviato
+                                        {{ getLastMessage(singleContact.messages) }}
                                     </p>  
 
                                 </div>
@@ -146,7 +146,7 @@
                                 <div>
 
                                     <span class="time">
-                                        12:00
+                                        {{ getLastMessageTime(singleContact.messages) }}
                                     </span>
 
                                 </div>
@@ -179,7 +179,7 @@
                                     </h6>
 
                                     <p>
-                                        Ultimo accesso alle 12:00
+                                        Ultimo accesso alle {{ getLastMessageTime(contacts[currentlyActiveIndex].messages) }}
                                     </p>  
 
                                 </div>
@@ -202,12 +202,27 @@
 
                     <div class="chat_container p-4" v-if="selectedContact !== null">
 
-                        
-
                         <div v-for="(messageData, index) in contacts[currentlyActiveIndex].messages" :key="index">
 
                             <div :class="(messageData.status === 'sent') ? 'sent' : 'received' ">
                                 {{messageData.message}}
+
+                                <!-- MILESTONE 5: -->
+
+                                <div class="dropdown">
+
+                                    <a type="button" class="dr_btn" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu position-absolute top-0 end-0">
+                                        <li @click="removeMessage(index)">
+                                            <a class="dropdown-item" href="#">Delete message</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
 
                                 <div class="date">
                                     {{messageData.date}}
