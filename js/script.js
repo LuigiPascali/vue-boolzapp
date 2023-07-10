@@ -214,6 +214,19 @@ const app = Vue.createApp({
         this.newMessage = '';
       },
 
+      // MILESTONE 4:
+      searchContacts(){
+
+        for(let i = 0; i < this.contacts.length; i++){
+
+            this.contacts[i].visible = false
+
+            if(this.contacts[i].name.toLowerCase().includes(this.searchQuery.toLowerCase())){
+                this.contacts[i].visible = true
+            }
+        }
+      },
+
       // MILESTONE 5:
 
       removeMessage(index){
@@ -241,14 +254,7 @@ const app = Vue.createApp({
       },
 
     },
-    // MILESTONE 4:
-    computed: {
-      filteredContacts() {
-        return this.contacts.filter(contact => {
-          return contact.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
-    },    
-  }
+
 });
 // Mostra l'applicazione nella pagina HTML
 app.mount('#app');

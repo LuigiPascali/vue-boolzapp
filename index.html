@@ -111,7 +111,7 @@
 
                                 <!-- MILESTONE 4: -->
 
-                                <input type="text" class="form-control rounded-0 border border-white" placeholder="Cerca o inizia una nuova chat" v-model="searchQuery">
+                                <input v-model="searchQuery" @input="searchContacts()" type="text" class="form-control rounded-0 border border-white" placeholder="Cerca o inizia una nuova chat">
 
                             </div>
 
@@ -121,7 +121,7 @@
     
                     <div class="aside_bottom flex-grow-2">
                        
-                        <div class="contact_container" v-for="(singleContact, i) in filteredContacts" @click="changeChat(i)" :class="{ 'contact-item-active' : singleContact.isActive }">
+                        <div class="contact-item" v-for="(singleContact, i) in contacts" @click="changeChat(i)" :class="{'contact-item-active': singleContact.isActive, 'd-none': !singleContact.visible}">
 
                             <div class="avatar-img">
                                 <img :src="singleContact.avatar" alt="">
@@ -179,7 +179,7 @@
                                     </h6>
 
                                     <p>
-                                        Ultimo accesso alle {{ getLastMessageTime(contacts[currentlyActiveIndex].messages) }}
+                                        Ultimo accesso: {{ getLastMessageTime(contacts[currentlyActiveIndex].messages) }}
                                     </p>  
 
                                 </div>
